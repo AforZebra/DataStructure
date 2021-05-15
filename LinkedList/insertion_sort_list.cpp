@@ -1,20 +1,27 @@
 // https://www.interviewbit.com/problems/insertion-sort-list/
 
 ListNode* Solution::insertionSortList(ListNode* A) {
-    ListNode *head = A, *prev = NULL, *curr, *loop = A,*temp;
+    
+    ListNode *head = A, *prev = NULL, *curr, *loop = A,*temp, *insertionBreak = NULL;
+    int length = 0;
+    bool swapFlag = false;
+    
     if(A == NULL || A->next == NULL)
         return A;
-    int length = 0;
+        
     while(loop != NULL){
         length++;
         loop = loop->next;
     }
+    
     while(length--){
         curr = head;
         prev = NULL;
-        while(curr->next != NULL){
+        swapFlag = false;
+        while(curr->next != insertionBreak){
             temp = curr->next;
             if(curr->val > temp->val){
+                swapFlag = true;
                 if(prev == NULL){
                     head = temp;
                 }
@@ -29,6 +36,9 @@ ListNode* Solution::insertionSortList(ListNode* A) {
                 curr = curr->next;
             }
         }
+        insertionBreak = curr;
+        if(!swapFlag)
+            break;
     }
     return head;
 }
