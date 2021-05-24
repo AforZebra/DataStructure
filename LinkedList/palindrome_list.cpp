@@ -8,7 +8,6 @@ ListNode *reverse(ListNode *curr){
         prev = curr;
         curr = next;
     }
-    cout<<prev->val;
     return prev;
 }
 int Solution::lPalin(ListNode* A) {
@@ -18,24 +17,23 @@ int Solution::lPalin(ListNode* A) {
         len++;
         loop = loop->next;
     }
-    cout<<"len"<<len<<endl;
     middle = (len%2) ? len/2 + 1 : len/2;
-    cout<<"middle"<<middle<<endl;
     int counter = 1;
     loop = A;
     while(counter <= middle){
         loop = loop->next;
         counter++;
     }
-    cout<<"loop"<<loop->val<<endl;
     ListNode *rev = reverse(loop);
     loop = A;
-    int flag = 0;
+    int flag = 1;
     while(loop != NULL && rev != NULL){
         if(loop->val != rev->val){
-            flag = 1;
+            flag = 0;
             break;
         }
+        loop = loop->next;
+        rev = rev->next;
     }
     return flag;
 }
