@@ -1,34 +1,39 @@
 // https://www.interviewbit.com/problems/merge-two-sorted-lists/
 
 ListNode* Solution::mergeTwoLists(ListNode* A, ListNode* B) {
-    ListNode *C = NULL, *temp, *curr = NULL;
+    ListNode *C, *curr;
     
-    while(A != NULL && B != NULL){
+    if(A == NULL)
+        return B;
+    else if(B == NULL)
+        return A;
+        
+    if(A->val < B->val){
+        C = A;
+        A = A->next;
+    }
+    else{
+        C = B;
+        B = B->next;
+    }
+    curr = C;
+    
+    while(A && B){
         if(A->val < B->val){
-            temp = A;
+            curr->next = A;
+            curr = A;
             A = A->next;
-            temp->next = NULL;
-            if(curr)
-                curr->next = temp;
-            else
-                C = temp;
-            curr = temp;
         }
         else{
-            temp = B;
+            curr->next = B;
+            curr = B;
             B = B->next;
-            temp->next = NULL;
-            if(curr)
-                curr->next = temp;
-            else
-                C = temp;
-            curr = temp;
         }
     }
     
-    if(A == NULL && B != NULL)
+    if(A == NULL && B)
         curr->next = B;
-    else if(B == NULL && A != NULL)
+    else if(B == NULL && A)
         curr->next = A;
     return C;
 }
