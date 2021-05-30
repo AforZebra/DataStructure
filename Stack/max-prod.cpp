@@ -29,7 +29,7 @@ int Solution::maxSpecialProduct(vector<int> &A) {
     
     long long result = -1;
     for(int i = 0;i < len;i++){
-        result = max(result, rightMax[i] * leftMax[i]*1LL);
+        result = max(result, rightMax[i]*1LL* leftMax[i]);
     }
     return result%1000000007;
 }
