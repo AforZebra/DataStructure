@@ -27,9 +27,9 @@ int Solution::maxSpecialProduct(vector<int> &A) {
         a.push(i);
     }
     
-    long long result = -1;
-    for(int i = 0;i < len;i++){
-        result = max(result, rightMax[i]*1LL* leftMax[i]);
+    long long  ans = 0;
+    for(int i=0;i<len;i++){
+        ans = max(1LL*leftMax[i]*rightMax[i], ans);
     }
-    return result%1000000007;
+    return ans%1000000007;
 }
