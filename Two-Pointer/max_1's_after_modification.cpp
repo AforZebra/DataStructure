@@ -23,3 +23,18 @@ int Solution::solve(vector<int> &A, int B) {
     }
     return ans;
 }
+
+// updated
+
+int Solution::solve(vector<int> &A, int B) {
+    int mx = INT_MIN, n = A.size();
+    for(int i = 0,j = 0; i < n;i++){
+        if(A[i] == 0)B--;
+        while(B == -1){
+            if(A[j] == 0)B++;
+            j++;
+        }
+        mx = max(mx, i-j+1);
+    }
+    return mx;
+}
