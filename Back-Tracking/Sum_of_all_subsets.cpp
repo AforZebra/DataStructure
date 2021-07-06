@@ -16,3 +16,18 @@ public:
         return sum;
     }
 };
+
+
+// Another Solution
+
+class Solution {
+
+public:
+    int subsetXORSum(vector<int>& nums) {
+        int bit = 0, n = nums.size();
+        for(int i = 0;i < n;i++){
+            bit |= nums[i];
+        }
+        return bit*pow(2,n-1);
+    }
+};
