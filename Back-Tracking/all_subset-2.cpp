@@ -24,3 +24,25 @@ vector<vector<int> > Solution::subsetsWithDup(vector<int> &A) {
     call(0, A, A.size(), result, v, "", us);
     return result;
 }
+
+
+// Updated
+
+void call(int idx, vector<int>A, int n, vector<vector<int>> &result, vector<int>v){
+    result.push_back(v);
+    for(int i = idx;i < n;i++){
+        v.push_back(A[i]);
+        call(i+1, A, n, result, v);
+        while(i < n-1 && A[i] == A[i+1])
+            i++;
+        v.pop_back();
+    }
+}
+
+vector<vector<int> > Solution::subsetsWithDup(vector<int> &A) {
+    vector<int>v;
+    vector<vector<int> > result;
+    sort(A.begin(),A.end());
+    call(0, A, A.size(), result, v);
+    return result;
+}
