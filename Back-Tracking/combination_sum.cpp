@@ -5,7 +5,6 @@ void call(int idx, int sum, int B, vector<int>A, vector<int>v, set<vector<int>>&
     if(sum > B || idx >= A.size() || A[idx] == 0)return;
     v.push_back(A[idx]);
     call(idx, sum+A[idx], B, A, v, s);
-    call(idx+1, sum+A[idx], B, A, v, s);
     v.pop_back();
     call(idx+1, sum, B, A, v, s);
 }
@@ -22,3 +21,4 @@ vector<vector<int> > Solution::combinationSum(vector<int> &A, int B) {
     }
     return ans;
 }
+
