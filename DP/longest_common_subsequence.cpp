@@ -14,3 +14,24 @@ int Solution::solve(string A, string B) {
     }
     return v[idx][b];
 }
+
+// recursion
+
+int call(int i,int j,vector<vector<int>>&v,string A,string B){
+    if(i < 0 || j < 0)return 0;
+    if(v[i][j] != -1)return v[i][j];
+    if(A[i] == B[j]){
+        v[i][j] = 1 + call(i-1,j-1,v,A,B);
+        return v[i][j];
+    }
+    v[i][j] = max(call(i-1,j,v,A,B),call(i,j-1,v,A,B));
+    return v[i][j];
+}
+
+int Solution::solve(string A, string B) {
+    int a = A.size(),b = B.size(),idx;
+    vector<vector<int>>v(a,vector<int>(b,-1));
+    call(a-1,b-1,v,A,B);
+    return v[a-1][b-1];
+}
+
