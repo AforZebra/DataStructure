@@ -24,3 +24,24 @@ public:
         return v;
     }
 };
+
+// Optimized Solution
+
+vector<int> Solution::inorderTraversal(TreeNode* A) {
+    vector<int>v;
+        stack<TreeNode*>s;
+        if(!A)return v;
+        TreeNode *curr = A;
+        while(!s.empty() || curr){
+            if(curr){
+                s.push(curr);
+                curr = curr->left;
+            }
+            else{
+                v.push_back(s.top()->val);
+                curr = s.top()->right;
+                s.pop();
+            }
+        }
+        return v;
+}
