@@ -11,6 +11,7 @@ int Solution::solve(vector<int> &A) {
         dp[A[i]] = true;
     }
     for(int i = 0;i <= sum;i++){
+        if(dp[i])
         ans = min(ans, abs(sum-2*i));
     }
     return ans;
